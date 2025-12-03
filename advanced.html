@@ -21,12 +21,11 @@
             font-size: 18px;
             font-weight: bold;
             z-index: 9999; /* 最上层显示，不被摄像头画面遮挡 */
-            display: none;
         }
     </style>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <div class="loading" id="loading">加载中... 请扫描AR标记后，不要乱动</div>
+   <!--  <div class="loading" id="loading">加载中... 请扫描AR标记后，不要乱动</div> -->
     <!-- AR场景核心容器 -->
     <!-- 适配课堂A4纸质标记 -->
     <!-- 启用设备摄像头 -->
@@ -63,12 +62,12 @@
             const model = document.querySelector('#landmark-model');
             const textOverlay = document.getElementById('landmark-text');
             const loading = document.getElementById('loading');
-            const glbModel = document.querySelector('#landmarkModel');
+           /*  const glbModel = document.querySelector('#landmarkModel');
 
             glbModel.addEventListener('loaded', () => {
                 textOverlay.style.display = 'block'; // 显示文字
                 loading.style.display = 'none'; // 隐藏加载提示
-            });
+            }); */
 
         });
     </script>

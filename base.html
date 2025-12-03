@@ -10,7 +10,6 @@
     <script src="./js/aframe-ar-nft.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <div class="loading" id="loading">加载中... 请扫描AR标记后，不要乱动</div>
     <!-- AR场景核心容器 -->
     <!-- 适配课堂A4纸质标记 -->
     <!-- 启用设备摄像头 -->
@@ -45,9 +44,7 @@
             const model = document.querySelector('#landmark-model');
             const loading = document.getElementById('loading');
 
-            glbModel.addEventListener('loaded', () => {
-                loading.style.display = 'none'; // 隐藏加载提示
-            });
+            
 
         });
     </script>
