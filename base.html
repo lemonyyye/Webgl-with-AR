@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港地标AR导览 - 基础版(立方体)</title>
+    <!-- 在线依赖：顺序不可乱（A-Frame → Three.js → AR.js） -->
+    <script src="./js/aframe.min.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/aframe-ar-nft.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <div class="loading" id="loading">加载中... 请扫描AR标记后，不要乱动</div>
+    <!-- AR场景核心容器 -->
+    <!-- 适配课堂A4纸质标记 -->
+    <!-- 启用设备摄像头 -->
+   <a-scene
+        vr-mode-ui="enabled: false;"  
+        arjs="
+            trackingMethod: best; 
+            detectionMode: mono_and_matrix; 
+            matrixCodeType: 3x3; 
+            sourceType: webcam; 
+        "
+    >
+        <a-marker type="pattern" url="./assets/marker.patt">
+            <!-- 3D模型：默认加载示例立方体（学生可替换为香港地标模型） -->
+            <a-entity
+                id="landmark-model"
+                geometry="primitive: box; width: 1; height: 1; depth: 1"  
+                material="color: #ff6b6b; opacity: 0.8" 
+                scale="0.3 0.3 0.3"
+                position="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 3000; repeat: Infinity; ease: linear"
+            >
+            </a-entity>
+        </a-marker>
+
+        <!-- 相机：必选组件（模拟人眼视角） -->
+        <a-entity camera></a-entity>
+    </a-scene>
+    <!-- 交互脚本：点击模型显示介绍 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const model = document.querySelector('#landmark-model');
+            const loading = document.getElementById('loading');
+
+            glbModel.addEventListener('loaded', () => {
+                loading.style.display = 'none'; // 隐藏加载提示
+            });
+
+        });
+    </script>
+</body>
+</html>
