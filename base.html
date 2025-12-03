@@ -13,7 +13,7 @@
     <!-- AR场景核心容器 -->
     <!-- 适配课堂A4纸质标记 -->
     <!-- 启用设备摄像头 -->
-   <a-scene
+    <a-scene
         vr-mode-ui="enabled: false;"  
         arjs="
             trackingMethod: best; 
@@ -22,20 +22,18 @@
             sourceType: webcam; 
         "
     >
+        <!-- Basic vision: Replace the marker path; Change the model shape or parameters -->
         <a-marker type="pattern" url="./assets/marker.patt">
-            <!-- 3D模型：默认加载示例立方体（学生可替换为香港地标模型） -->
             <a-entity
                 id="landmark-model"
                 geometry="primitive: box; width: 1; height: 1; depth: 1"  
-                material="color: #ff6b6b; opacity: 0.8" 
-                scale="0.3 0.3 0.3"
+                material="color: #58bc58; opacity: 1" 
+                scale="0.8 0.3 0.3"
                 position="0 0 0"
                 animation="property: rotation; to: 0 360 0; dur: 3000; repeat: Infinity; ease: linear"
             >
             </a-entity>
         </a-marker>
-
-        <!-- 相机：必选组件（模拟人眼视角） -->
         <a-entity camera></a-entity>
     </a-scene>
     <!-- 交互脚本：点击模型显示介绍 -->
@@ -43,9 +41,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const model = document.querySelector('#landmark-model');
             const loading = document.getElementById('loading');
-
-            
-
         });
     </script>
 </body>
