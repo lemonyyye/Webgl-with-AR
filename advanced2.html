@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港地标AR导览 - 进阶版</title>
+    <!-- 在线依赖：顺序不可乱（A-Frame → Three.js → AR.js） -->
+    <script src="./js/aframe.min.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/aframe-ar-nft.js"></script>
+    <style>
+        #landmark-text {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8); /* 黑色半透明背景 */
+            color: white; /* 白色文字 */
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 9999; /* 最上层显示，不被摄像头画面遮挡 */
+        }
+    </style>
+</head>
+<body style="margin: 0; overflow: hidden;">
+   <!--  <div class="loading" id="loading">加载中... 请扫描AR标记后，不要乱动</div> -->
+    <!-- AR场景核心容器 -->
+    <!-- 适配课堂A4纸质标记 -->
+    <!-- 启用设备摄像头 -->
+    <a-scene
+        vr-mode-ui="enabled: false;"  
+        arjs="
+            trackingMethod: best; 
+            detectionMode: mono_and_matrix; 
+            matrixCodeType: 3x3; 
+            sourceType: webcam; 
+        "
+    >
+        <div id="landmark-text">尖沙咀鐘樓</div>
+         <a-marker type="pattern" url="./assets/marker.patt">
+            <!-- 关联加载的3D模型 -->
+            <a-entity
+                id="landmark-model"
+                gltf-model="#landmarkModel" 
+                position="0 0 0"
+                animation="property: rotation; to: 0 360 0; dur: 5000; repeat: Infinity"
+            >
+            </a-entity>
+        </a-marker>
+        <a-assets>
+            <a-asset-item id="landmarkModel" src="./assets/landmark2.glb"></a-asset-item>
+        </a-assets>
+        <!-- 相机：必选组件（模拟人眼视角） -->
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <!-- 交互脚本：点击模型显示介绍 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const model = document.querySelector('#landmark-model');
+            const textOverlay = document.getElementById('landmark-text');
+            const loading = document.getElementById('loading');
+           /*  const glbModel = document.querySelector('#landmarkModel');
+
+            glbModel.addEventListener('loaded', () => {
+                textOverlay.style.display = 'block'; // 显示文字
+                loading.style.display = 'none'; // 隐藏加载提示
+            }); */
+
+        });
+    </script>
+</body>
+</html>
