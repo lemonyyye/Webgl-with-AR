@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovative Learning Environment Challenge</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background: #f5f7fa; color: #333; }
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #2c3e50; margin-bottom: 10px; font-size: 28px; }
+        .header p { color: #7f8c8d; font-size: 18px; }
+        .level-card { background: #ecf0f1; border-radius: 8px; padding: 25px; margin-bottom: 20px; display: none; }
+        .level-card.active { display: block; animation: fadeIn 0.5s ease; }
+        .level-title { color: #3498db; font-size: 22px; margin-bottom: 15px; display: flex; align-items: center; }
+        .level-title span { background: #3498db; color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; }
+        .question { font-size: 18px; margin-bottom: 20px; line-height: 1.5; }
+        .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .option { background: #f8f9fa; border: 2px solid #bdc3c7; border-radius: 6px; padding: 15px; cursor: pointer; transition: all 0.3s ease; }
+        .option:hover { background: #e3f2fd; border-color: #90caf9; }
+        .option.correct { background: #e8f5e9; border-color: #4caf50; }
+        .option.wrong { background: #ffebee; border-color: #f44336; }
+        .feedback { padding: 15px; border-radius: 6px; margin-bottom: 20px; display: none; }
+        .feedback.correct { background: #e8f5e9; color: #2e7d32; }
+        .feedback.wrong { background: #ffebee; color: #c62828; }
+        .next-btn { background: #2196f3; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-size: 16px; cursor: pointer; transition: background 0.3s ease; margin: 0 auto; display: block; }
+        .next-btn:hover { background: #1976d2; }
+        .result { text-align: center; padding: 30px; display: none; }
+        .result h2 { color: #2c3e50; margin-bottom: 20px; font-size: 28px; }
+        .result p { color: #7f8c8d; font-size: 20px; margin-bottom: 30px; }
+        .restart-btn { background: #4caf50; color: white; border: none; padding: 12px 30px; border-radius: 6px; font-size: 16px; cursor: pointer; transition: background 0.3s ease; }
+        .restart-btn:hover { background: #388e3c; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Innovative Learning Environment Challenge</h1>
+            <p>Test your understanding of core concepts from course reflection!</p>
+        </div>
+
+        <!-- Level 1: Pedagogy as Foundation, Technology as Bridge -->
+        <div class="level-card active" id="level1">
+            <div class="level-title"><span>1</span>Level 1: Core of Innovation</div>
+            <div class="question">Which of the following best reflects the core of an innovative learning environment?</div>
+            <div class="options">
+                <div class="option" data-correct="false">A. Equipping classrooms with full set of digital tools like latest VR devices and tablets</div>
+                <div class="option" data-correct="true">B. Selecting appropriate technology based on teaching objectives to promote active student exploration</div>
+                <div class="option" data-correct="false">C. Teachers using various technical software for classroom demonstrations</div>
+                <div class="option" data-correct="false">D. Students independently using any technology to complete learning tasks</div>
+            </div>
+            <div class="feedback" id="feedback1"></div>
+            <button class="next-btn" id="next1" style="display: none;">Proceed to Next Level</button>
+        </div>
+
+        <!-- Level 2: Seamless Learning -->
+        <div class="level-card" id="level2">
+            <div class="level-title"><span>2</span>Level 2: Essence of Seamless Learning</div>
+            <div class="question">What does "seamless learning" emphasized in innovative learning environments refer to?</div>
+            <div class="options">
+                <div class="option" data-correct="false">A. Students learning continuously without rest time throughout the day</div>
+                <div class="option" data-correct="false">B. Continuous learning achieved only through online platforms</div>
+                <div class="option" data-correct="true">C. Breaking boundaries between classroom and life to achieve a closed loop of knowledge acquisition-application-reflection</div>
+                <div class="option" data-correct="false">D. Completing all learning content through technical devices</div>
+            </div>
+            <div class="feedback" id="feedback2"></div>
+            <button class="next-btn" id="next2" style="display: none;">Proceed to Next Level</button>
+        </div>
+
+        <!-- Level 3: Inclusion and Equity -->
+        <div class="level-card" id="level3">
+            <div class="level-title"><span>3</span>Level 3: Bottom Line of Equity</div>
+            <div class="question">Which design violates the "equity" principle of innovative learning environments?</div>
+            <div class="options">
+                <div class="option" data-correct="false">A. Providing easy-to-operate and widely accessible technical tools</div>
+                <div class="option" data-correct="false">B. Designing tiered tasks for students at different proficiency levels</div>
+                <div class="option" data-correct="true">C. Requiring students to bring their own high-end tablets to participate in learning</div>
+                <div class="option" data-correct="false">D. Providing personalized feedback adapted to different learning abilities</div>
+            </div>
+            <div class="feedback" id="feedback3"></div>
+            <button class="next-btn" id="next3" style="display: none;">Proceed to Next Level</button>
+        </div>
+
+        <!-- Level 4: Learner-Centered -->
+        <div class="level-card" id="level4">
+            <div class="level-title"><span>4</span>Level 4: Core Orientation</div>
+            <div class="question">What is the core difference between innovative and traditional learning environments?</div>
+            <div class="options">
+                <div class="option" data-correct="false">A. The quantity of technical tools available</div>
+                <div class="option" data-correct="true">B. Being learner-centered and returning learning initiative to students</div>
+                <div class="option" data-correct="false">C. Whether the classroom is more active and lively</div>
+                <div class="option" data-correct="false">D. Whether teachers use technology for teaching</div>
+            </div>
+            <div class="feedback" id="feedback4"></div>
+            <button class="next-btn" id="next4" style="display: none;">Proceed to Final Level</button>
+        </div>
+
+        <!-- Level 5: Positioning of Technology -->
+        <div class="level-card" id="level5">
+            <div class="level-title"><span>5</span>Level 5: Role of Technology</div>
+            <div class="question">Which of the following correctly positions "technology" in innovative learning environments?</div>
+            <div class="options">
+                <div class="option" data-correct="false">A. Technology is the core of innovation; no technology means no innovation</div>
+                <div class="option" data-correct="false">B. Technology should replace teachers' humanistic care</div>
+                <div class="option" data-correct="true">C. Technology is a tool to achieve personalized learning, serving educational goals</div>
+                <div class="option" data-correct="false">D. The more advanced the technology, the more innovative the learning environment</div>
+            </div>
+            <div class="feedback" id="feedback5"></div>
+            <button class="next-btn" id="next5" style="display: none;">View Results</button>
+        </div>
+
+        <!-- Result Page -->
+        <div class="result" id="result">
+            <h2>Challenge Completed! 🎉</h2>
+            <p>You have fully mastered the core cognition of innovative learning environments!</p>
+            <p id="score" style="color: #e67e22; font-size: 24px; margin: 20px 0;"></p>
+            <p>Core Takeaway: An innovative learning environment is an educational ecosystem "centered on learners, based on pedagogical methods, and characterized by seamless connection and inclusion"</p>
+            <button class="restart-btn" id="restart">Restart Challenge</button>
+        </div>
+    </div>
+
+    <script>
+        let currentLevel = 1;
+        const totalLevels = 5;
+        let score = 0;
+
+        // Add click events to all options
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const level = currentLevel;
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+                const feedback = document.getElementById(`feedback${level}`);
+                const nextBtn = document.getElementById(`next${level}`);
+
+                // Disable all options
+                document.querySelectorAll(`#level${level} .option`).forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.getAttribute('data-correct') === 'true') opt.classList.add('correct');
+                });
+
+                // Mark selected option
+                this.classList.add(isCorrect ? 'correct' : 'wrong');
+
+                // Show feedback
+                feedback.style.display = 'block';
+                if (isCorrect) {
+                    score++;
+                    feedback.className = 'feedback correct';
+                    feedback.textContent = 'Correct! This is exactly the core viewpoint from the course reflection～';
+                } else {
+                    feedback.className = 'feedback wrong';
+                    switch(level) {
+                        case 1: feedback.textContent = 'Incorrect! The core of innovation is pedagogical methods, and technology is only a service tool, not the more the better.'; break;
+                        case 2: feedback.textContent = 'Incorrect! Seamless learning breaks scenario boundaries, connects classroom and life, and forms a knowledge closed loop.'; break;
+                        case 3: feedback.textContent = 'Incorrect! Requiring high-end personal devices exacerbates the digital divide and violates the principle of equity.'; break;
+                        case 4: feedback.textContent = 'Incorrect! The core difference is being "learner-centered" and returning learning initiative to students.'; break;
+                        case 5: feedback.textContent = 'Incorrect! Technology is a tool rather than an end, serving personalized learning and educational goals.'; break;
+                    }
+                }
+
+                // Show next level button
+                nextBtn.style.display = 'block';
+            });
+        });
+
+        // Next level button events
+        for (let i = 1; i <= totalLevels; i++) {
+            document.getElementById(`next${i}`).addEventListener('click', function() {
+                if (currentLevel < totalLevels) {
+                    document.getElementById(`level${currentLevel}`).classList.remove('active');
+                    currentLevel++;
+                    document.getElementById(`level${currentLevel}`).classList.add('active');
+                } else {
+                    // Show results
+                    document.getElementById(`level${totalLevels}`).style.display = 'none';
+                    const result = document.getElementById('result');
+                    const scoreText = document.getElementById('score');
+                    scoreText.textContent = `Score: ${score}/${totalLevels}`;
+                    result.style.display = 'block';
+                }
+            });
+        }
+
+        // Restart button
+        document.getElementById('restart').addEventListener('click', function() {
+            // Reset state
+            currentLevel = 1;
+            score = 0;
+            document.getElementById('result').style.display = 'none';
+            
+            // Reset all levels
+            for (let i = 1; i <= totalLevels; i++) {
+                const level = document.getElementById(`level${i}`);
+                level.classList.remove('active');
+                level.style.display = 'block';
+                // Reset options
+                document.querySelectorAll(`#level${i} .option`).forEach(opt => {
+                    opt.classList.remove('correct', 'wrong');
+                    opt.style.pointerEvents = 'auto';
+                });
+                // Hide feedback and next button
+                document.getElementById(`feedback${i}`).style.display = 'none';
+                document.getElementById(`next${i}`).style.display = 'none';
+            }
+            // Activate first level
+            document.getElementById('level1').classList.add('active');
+        });
+    </script>
+</body>
+</html>
